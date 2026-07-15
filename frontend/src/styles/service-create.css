@@ -1,0 +1,703 @@
+/* service-create.css - Complete Updated CSS */
+
+.admin-category-page {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+  min-height: 100vh;
+}
+
+.admin-category-container {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px 45px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(27, 94, 63, 0.06);
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.admin-category-header {
+  margin-bottom: 35px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e8edf2;
+}
+
+.admin-category-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.admin-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1b5e3f;
+  background: rgba(27, 94, 63, 0.08);
+  padding: 4px 16px;
+  border-radius: 50px;
+}
+
+.admin-category-badge-icon {
+  font-size: 1rem;
+}
+
+.admin-category-title {
+  margin: 0 0 6px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.admin-category-subtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+/* ========================================
+   FORM
+   ======================================== */
+.admin-category-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.admin-category-section {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 24px 28px;
+  border: 1px solid #e8edf2;
+}
+
+.admin-category-section-title {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-category-section-desc {
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* ========================================
+   FORM GROUPS
+   ======================================== */
+.admin-category-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.admin-category-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.admin-category-form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.required {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.admin-category-form-group input,
+.admin-category-form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e8edf2;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  font-family: inherit;
+}
+
+.admin-category-form-group input:focus,
+.admin-category-form-group textarea:focus {
+  border-color: #1b5e3f;
+  box-shadow: 0 0 0 4px rgba(27, 94, 63, 0.08);
+}
+
+.admin-category-form-group input:disabled {
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.help-text {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* ========================================
+   FILE UPLOAD
+   ======================================== */
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-upload-wrapper.small {
+  width: auto;
+}
+
+.file-input {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.file-upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #f8fafc;
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: #0f172a;
+  width: 100%;
+  justify-content: center;
+}
+
+.file-upload-label:hover {
+  border-color: #1b5e3f;
+  background: #f1f5f9;
+}
+
+.file-upload-label.small {
+  padding: 8px 16px;
+  width: auto;
+  font-size: 0.85rem;
+}
+
+.upload-icon {
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   IMAGE PREVIEW - CATEGORY
+   ======================================== */
+.image-preview {
+  position: relative;
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e8edf2;
+  max-width: 250px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-preview-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.image-preview-remove:hover {
+  background: rgba(220, 38, 38, 0.8);
+  transform: scale(1.1);
+}
+
+/* ========================================
+   IMAGE PREVIEW - ITEM
+   ======================================== */
+.item-image-preview {
+  position: relative;
+  margin-top: 6px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e8edf2;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.item-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.item-image-preview-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.item-image-preview-remove:hover {
+  background: rgba(220, 38, 38, 0.8);
+  transform: scale(1.1);
+}
+
+/* ========================================
+   GENDER CHECKBOXES
+   ======================================== */
+.admin-category-gender-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-category-gender-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.admin-category-gender-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #1b5e3f;
+  cursor: pointer;
+}
+
+.admin-category-gender-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ========================================
+   GENDER ITEMS
+   ======================================== */
+.admin-category-gender-items {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e8edf2;
+}
+
+.admin-category-gender-items:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.admin-category-gender-title {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1b5e3f;
+}
+
+.admin-category-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ========================================
+   ITEM ROW
+   ======================================== */
+.admin-category-item-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e8edf2;
+}
+
+.admin-category-item-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-category-item-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-category-item-field input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid #e8edf2;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.admin-category-item-field input[type="text"]:focus {
+  border-color: #1b5e3f;
+  box-shadow: 0 0 0 3px rgba(27, 94, 63, 0.06);
+}
+
+.admin-category-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 20px;
+}
+
+.admin-category-item-remove {
+  width: 32px;
+  height: 32px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-category-item-remove:hover {
+  background: #fecaca;
+  transform: scale(1.05);
+}
+
+/* ========================================
+   ADD ITEM BUTTON
+   ======================================== */
+.admin-category-add-item-btn {
+  margin-top: 12px;
+  padding: 8px 20px;
+  background: transparent;
+  color: #1b5e3f;
+  border: 2px dashed #1b5e3f;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-category-add-item-btn:hover {
+  background: rgba(27, 94, 63, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   FORM ACTIONS
+   ======================================== */
+.admin-category-form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid #e8edf2;
+}
+
+.btn-cancel {
+  padding: 12px 28px;
+  background: #f1f5f9;
+  color: #0f172a;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.btn-submit {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #1b5e3f, #2d6a4f);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(27, 94, 63, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, #2d6a4f, #1b5e3f);
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SPINNER
+   ======================================== */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 992px) {
+  .admin-category-container {
+    padding: 30px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-category-page {
+    padding: 30px 16px 40px;
+  }
+
+  .admin-category-container {
+    padding: 25px 20px;
+    border-radius: 18px;
+  }
+
+  .admin-category-title {
+    font-size: 1.6rem;
+  }
+
+  .admin-category-section {
+    padding: 18px 16px;
+  }
+
+  .admin-category-item-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .admin-category-item-actions {
+    padding-top: 0;
+    justify-content: flex-end;
+  }
+
+  .admin-category-form-actions {
+    flex-direction: column;
+  }
+
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-category-gender-options {
+    gap: 12px;
+  }
+
+  .file-upload-label.small {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .file-upload-wrapper.small {
+    width: 100%;
+  }
+
+  .image-preview {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-category-container {
+    padding: 16px 14px;
+  }
+
+  .admin-category-title {
+    font-size: 1.3rem;
+  }
+
+  .admin-category-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .admin-category-form-group input,
+  .admin-category-form-group textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .admin-category-section-title {
+    font-size: 1rem;
+  }
+
+  .admin-category-item-field input[type="text"] {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .item-image-preview {
+    width: 60px;
+    height: 60px;
+  }
+
+  .file-upload-label {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+.contact-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+}
+
+.contact-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e8edf2;
+  border-top-color: #1b5e3f;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.text-center {
+  text-align: center;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-category-section {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.admin-category-section:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.admin-category-section:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.admin-category-section:nth-child(3) {
+  animation-delay: 0.15s;
+}

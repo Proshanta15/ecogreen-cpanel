@@ -1,0 +1,127 @@
+.contact-page {
+	min-height: calc(100vh - 140px);
+	display: grid;
+	place-items: center;
+	padding: 2.5rem 1.25rem;
+}
+
+.contact-card {
+	width: min(100%, 760px);
+	border: 1px solid rgba(15, 23, 42, 0.08);
+	border-radius: 24px;
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+	padding: 2rem;
+}
+
+.contact-copy {
+	margin-bottom: 1.5rem;
+}
+
+.contact-tag {
+	margin: 0 0 0.65rem;
+	display: inline-block;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #0369a1;
+	background: rgba(14, 165, 233, 0.14);
+	padding: 0.32rem 0.72rem;
+	border-radius: 999px;
+}
+
+.contact-copy h1 {
+	margin: 0;
+	font-size: clamp(1.7rem, 3vw, 2.25rem);
+	line-height: 1.25;
+	color: #0f172a;
+}
+
+.contact-copy p:last-child {
+	margin: 0.8rem 0 0;
+	color: #475569;
+	line-height: 1.7;
+	max-width: 62ch;
+}
+
+.contact-form {
+	display: grid;
+	gap: 1rem;
+}
+
+.contact-field {
+	display: grid;
+	gap: 0.45rem;
+}
+
+.contact-field label {
+	font-size: 0.93rem;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.contact-field input,
+.contact-field textarea {
+	width: 100%;
+	border: 1px solid #cbd5e1;
+	border-radius: 12px;
+	padding: 0.85rem 0.95rem;
+	font-size: 0.98rem;
+	background: #f8fafc;
+	color: #0f172a;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-field textarea {
+	resize: vertical;
+	min-height: 130px;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+	outline: none;
+	border-color: #0284c7;
+	box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.14);
+	background: #ffffff;
+}
+
+.contact-button {
+	margin-top: 0.35rem;
+	justify-self: start;
+	border: none;
+	border-radius: 12px;
+	padding: 0.82rem 1.4rem;
+	background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+	color: #ffffff;
+	font-size: 0.96rem;
+	font-weight: 700;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	box-shadow: 0 14px 26px rgba(37, 99, 235, 0.2);
+}
+
+.contact-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 17px 30px rgba(37, 99, 235, 0.24);
+}
+
+.contact-button:active {
+	transform: translateY(0);
+}
+
+@media (max-width: 680px) {
+	.contact-page {
+		padding: 2rem 1rem;
+	}
+
+	.contact-card {
+		padding: 1.4rem;
+		border-radius: 18px;
+	}
+
+	.contact-button {
+		width: 100%;
+		justify-self: stretch;
+	}
+}
