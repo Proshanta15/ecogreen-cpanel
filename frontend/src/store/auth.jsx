@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/user`, {
+      const response = await fetch(`${API_BASE_URL}/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

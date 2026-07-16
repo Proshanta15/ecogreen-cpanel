@@ -16,7 +16,7 @@ const AdminFAQ = () => {
   const getAllFaqData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/api/admin/faq`, {
+      const response = await fetch(`${API_BASE_URL}/admin/faq`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -50,7 +50,7 @@ const AdminFAQ = () => {
   const deleteFaq = async (id) => {
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/faq/delete/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/faq/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: authorizationToken,

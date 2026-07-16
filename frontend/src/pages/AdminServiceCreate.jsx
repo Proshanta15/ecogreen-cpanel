@@ -218,7 +218,7 @@ const AdminServiceCreate = () => {
 
       formDataToSend.append("items", JSON.stringify(itemsToSend));
 
-      const response = await fetch(`${API_BASE_URL}/api/admin/services`, {
+      const response = await fetch(`${API_BASE_URL}/admin/services`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,

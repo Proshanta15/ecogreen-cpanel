@@ -30,7 +30,7 @@ const AdminFaqForm = () => {
     e.preventDefault();
 
     try {
-        const response = await fetch(`${API_BASE_URL}/api/admin/faq/create`, {
+        const response = await fetch(`${API_BASE_URL}/admin/faq/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

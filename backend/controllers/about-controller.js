@@ -1,5 +1,6 @@
 import fs from "fs";
 import AboutPage from "../models/about-model.js";
+import { normalizeImagePath } from "../utils/image-path.js";
 
 // @desc    Create or update about page content
 // @route   POST /api/admin/about
@@ -19,25 +20,25 @@ export const createOrUpdateAboutPage = async (req, res) => {
     });
 
     // Overlay uploaded image paths onto the structured data
-    if (fileMap.heroImage) aboutData.hero = { ...aboutData.hero, image: fileMap.heroImage };
+    if (fileMap.heroImage) aboutData.hero = { ...aboutData.hero, image: normalizeImagePath(fileMap.heroImage) };
     if (fileMap.aboutImage)
-      aboutData.aboutContent = { ...aboutData.aboutContent, image: fileMap.aboutImage };
+      aboutData.aboutContent = { ...aboutData.aboutContent, image: normalizeImagePath(fileMap.aboutImage) };
     if (fileMap.visionImage)
       aboutData.visionMission = {
         ...aboutData.visionMission,
-        vision: { ...aboutData.visionMission?.vision, image: fileMap.visionImage },
+        vision: { ...aboutData.visionMission?.vision, image: normalizeImagePath(fileMap.visionImage) },
       };
     if (fileMap.missionImage)
       aboutData.visionMission = {
         ...aboutData.visionMission,
-        mission: { ...aboutData.visionMission?.mission, image: fileMap.missionImage },
+        mission: { ...aboutData.visionMission?.mission, image: normalizeImagePath(fileMap.missionImage) },
       };
-    if (fileMap.ctaImage) aboutData.cta = { ...aboutData.cta, image: fileMap.ctaImage };
+    if (fileMap.ctaImage) aboutData.cta = { ...aboutData.cta, image: normalizeImagePath(fileMap.ctaImage) };
 
     if (Array.isArray(aboutData.values)) {
       aboutData.values = aboutData.values.map((value, index) => {
         const key = `valueImage_${index}`;
-        return fileMap[key] ? { ...value, image: fileMap[key] } : value;
+        return fileMap[key] ? { ...value, image: normalizeImagePath(fileMap[key]) } : value;
       });
     }
 

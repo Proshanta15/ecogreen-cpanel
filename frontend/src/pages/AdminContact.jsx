@@ -13,7 +13,7 @@ export const AdminContact = () => {
 
     const getAllContactsData = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/admin/contacts`, {
+            const response = await fetch(`${API_BASE_URL}/admin/contacts`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -48,7 +48,7 @@ export const AdminContact = () => {
 
     const deleteContactById = async (id) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/admin/contacts/delete/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/contacts/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: authorizationToken,

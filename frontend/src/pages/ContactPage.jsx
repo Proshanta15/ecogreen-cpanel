@@ -40,7 +40,7 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/form/contact`, {
+      const response = await fetch(`${API_BASE_URL}/form/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const ContactPage = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/contact/content`,
+        `${API_BASE_URL}/admin/contact/content`,
         {
           method: "GET",
           headers: {

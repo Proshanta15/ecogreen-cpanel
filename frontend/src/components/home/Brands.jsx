@@ -1,11 +1,7 @@
 import React from 'react'
-import { API_BASE_URL } from '../../config';
+import { API_BASE_URL, resolveMediaUrl } from '../../config';
 
-const getImageUrl = (img) => {
-  if (!img) return "";
-  if (img.startsWith("http")) return img;
-  return `${API_BASE_URL}/${img.replace(/\\/g, "/")}`;
-};
+const getImageUrl = (img) => resolveMediaUrl(img);
 
 const defaultBrands = {
   badge: "OUR PARTNERS",

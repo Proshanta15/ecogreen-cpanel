@@ -1,14 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import BannerVideo from '../../../src/assets/video.mp4'
-import { API_BASE_URL } from '../../config';
+import { resolveMediaUrl } from '../../config';
 
 
-const getMediaUrl = (src) => {
-  if (!src) return "";
-  if (src.startsWith("http")) return src;
-  return `${API_BASE_URL}/${src.replace(/\\/g, "/")}`;
-};
+const getMediaUrl = (src) => resolveMediaUrl(src);
 
 const defaultBanner = {
   title: "Your Global Partner",

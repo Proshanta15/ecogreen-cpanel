@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/admin-service.css";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL, resolveMediaUrl } from "../config";
 
 
 const AdminService = () => {
@@ -12,16 +12,12 @@ const AdminService = () => {
   const [error, setError] = useState(null);
   const { authorizationToken } = useAuth();
 
-  const getImageUrl = (img) => {
-    if (!img) return "https://via.placeholder.com/400x300?text=No+Image";
-    if (img.startsWith("http")) return img;
-    return `${API_BASE_URL}/${img.replace(/\\/g, "/")}`;
-  };
+  const getImageUrl = (img) => resolveMediaUrl(img);
 
   const getAllCategories = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/api/services`, {
+      const response = await fetch(`${API_BASE_URL}/services`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -50,7 +46,7 @@ const AdminService = () => {
   const toggleStatus = async (category) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/services/${category.id}/toggle`,
+        `${API_BASE_URL}/admin/services/${category.id}/toggle`,
         {
           method: "PUT",
           headers: {
@@ -85,7 +81,7 @@ const AdminService = () => {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/services/${category.id}`,
+        `${API_BASE_URL}/admin/services/${category.id}`,
         {
           method: "DELETE",
           headers: {

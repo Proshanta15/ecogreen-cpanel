@@ -1,5 +1,6 @@
 import fs from "fs";
 import HomePage from "../models/home-model.js";
+import { normalizeImagePath } from "../utils/image-path.js";
 
 // @desc    Create or update home page content
 // @route   POST /api/admin/home
@@ -17,26 +18,26 @@ export const createOrUpdateHomePage = async (req, res) => {
     });
 
     // Single image / video
-    if (fileMap.bannerImage) homeData.banner = { ...homeData.banner, image: fileMap.bannerImage };
-    if (fileMap.bannerVideo) homeData.banner = { ...homeData.banner, video: fileMap.bannerVideo };
+    if (fileMap.bannerImage) homeData.banner = { ...homeData.banner, image: normalizeImagePath(fileMap.bannerImage) };
+    if (fileMap.bannerVideo) homeData.banner = { ...homeData.banner, video: normalizeImagePath(fileMap.bannerVideo) };
 
     // Array images
     if (Array.isArray(homeData.expertise?.cards)) {
       homeData.expertise.cards = homeData.expertise.cards.map((card, index) => {
         const key = `expertiseImage_${index}`;
-        return fileMap[key] ? { ...card, image: fileMap[key] } : card;
+        return fileMap[key] ? { ...card, image: normalizeImagePath(fileMap[key]) } : card;
       });
     }
     if (Array.isArray(homeData.showcase?.products)) {
       homeData.showcase.products = homeData.showcase.products.map((product, index) => {
         const key = `showcaseImage_${index}`;
-        return fileMap[key] ? { ...product, image: fileMap[key] } : product;
+        return fileMap[key] ? { ...product, image: normalizeImagePath(fileMap[key]) } : product;
       });
     }
     if (Array.isArray(homeData.brands?.brands)) {
       homeData.brands.brands = homeData.brands.brands.map((brand, index) => {
         const key = `brandLogo_${index}`;
-        return fileMap[key] ? { ...brand, logo: fileMap[key] } : brand;
+        return fileMap[key] ? { ...brand, logo: normalizeImagePath(fileMap[key]) } : brand;
       });
     }
 

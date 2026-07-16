@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import Service from "../models/service-model.js";
+import { normalizeImagePath } from "../utils/image-path.js";
 
 // @desc    Create a new service/category
 // @route   POST /api/admin/categories
@@ -29,12 +30,12 @@ export const createService = async (req, res) => {
     const itemImageMap = {};
     uploadedFiles.forEach((f) => {
       if (f.fieldname.startsWith("item-")) {
-        itemImageMap[f.fieldname] = f.path;
+        itemImageMap[f.fieldname] = normalizeImagePath(f.path);
       }
     });
 
     // Get image path if uploaded
-    let imagePath = categoryFile ? categoryFile.path : null;
+    let imagePath = categoryFile ? normalizeImagePath(categoryFile.path) : null;
 
     // Resolve item image references sent from the client
     ["men", "women", "children"].forEach((g) => {
@@ -184,7 +185,10 @@ export const updateService = async (req, res) => {
               // Newly uploaded image
               return { ...item, image: itemImageMap[item.image] || null };
             }
-            // Existing image url or null -> keep as-is
+            // Existing image url or null -> keep as-is (strip any origin)
+            if (typeof item.image === "string") {
+              return { ...item, image: normalizeImagePath(item.image) };
+            }
             return item;
           });
         }
@@ -197,7 +201,10 @@ export const updateService = async (req, res) => {
       if (service.image && fs.existsSync(service.image)) {
         fs.unlinkSync(service.image);
       }
-      service.image = categoryFile.path;
+      service.image = normalizeImagePath(categoryFile.path);
+    } else if (typeof req.body.image === "string" && req.body.image) {
+      // Preserve an existing image url sent back from the client (strip origin)
+      service.image = normalizeImagePath(req.body.image);
     }
 
     await service.save();

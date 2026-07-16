@@ -17,7 +17,7 @@ const ContactContentForm = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/contact/content`,
+        `${API_BASE_URL}/admin/contact/content`,
         {
           method: "GET",
           headers: {

@@ -19,7 +19,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/home`, {
+        const response = await fetch(`${API_BASE_URL}/home`, {
           method: "GET",
         })
         const result = await response.json()

@@ -30,7 +30,7 @@ const AdminFooterShowcase = () => {
   const fetchFooter = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/api/footer-showcase`, {
+      const response = await fetch(`${API_BASE_URL}/footer-showcase`, {
         method: "GET",
         headers: { Authorization: authorizationToken },
       });
@@ -76,7 +76,7 @@ const AdminFooterShowcase = () => {
       const fd = new FormData();
       fd.append("data", JSON.stringify(form));
 
-      const response = await fetch(`${API_BASE_URL}/api/admin/footer-showcase`, {
+      const response = await fetch(`${API_BASE_URL}/admin/footer-showcase`, {
         method: "PUT",
         headers: {
           Authorization: authorizationToken,

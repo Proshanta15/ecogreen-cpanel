@@ -13,14 +13,13 @@ const Faq = () => {
 
   const getAllFaqData = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/faq`, {
+      const response = await fetch(`${API_BASE_URL}/admin/faq`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
         },
       });
       const data = await response.json();
-      console.log("FAQs", data);
       setFaqs(Array.isArray(data) ? data : data.data || []);
     } catch (error) {
       console.log(error);

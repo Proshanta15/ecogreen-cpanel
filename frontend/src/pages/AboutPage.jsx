@@ -4,15 +4,11 @@ import Faq from "../components/Faq";
 import { NavLink } from "react-router-dom";
 import FooterShowcase from "../components/FooterShowcase";
 import IsLoading from "../components/IsLoading";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL, resolveMediaUrl } from "../config";
 
 
 
-const getImageUrl = (img) => {
-  if (!img) return "";
-  if (img.startsWith("http")) return img;
-  return `${API_BASE_URL}/${img.replace(/\\/g, "/")}`;
-};
+const getImageUrl = (img) => resolveMediaUrl(img);
 
 const defaultData = {
   hero: {
@@ -55,7 +51,7 @@ const AboutPage = () => {
   useEffect(() => {
     const fetchAbout = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/about`, {
+        const response = await fetch(`${API_BASE_URL}/about`, {
           method: "GET",
         });
         const result = await response.json();

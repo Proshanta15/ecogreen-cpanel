@@ -18,7 +18,7 @@ const ContactContentUpdate = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3000/api/admin/contact/content`,
+        `${API_BASE_URL}/admin/contact/content`,
         {
           method: "GET",
           headers: {
@@ -60,7 +60,7 @@ const ContactContentUpdate = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/contact/content/update/${params.id}`,{
+      const response = await fetch(`${API_BASE_URL}/admin/contact/content/update/${params.id}`,{
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

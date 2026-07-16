@@ -13,7 +13,7 @@ export const AdminUser = () => {
 
     const getAllUsersData = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/admin/users`, {
+            const response = await fetch(`${API_BASE_URL}/admin/users`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -48,7 +48,7 @@ export const AdminUser = () => {
 
     const deleteUser = async (id) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/admin/users/delete/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/users/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: authorizationToken,

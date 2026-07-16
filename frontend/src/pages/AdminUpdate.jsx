@@ -20,7 +20,7 @@ export const AdminUpdate = () => {
 
     const getSingleUserData = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/admin/users/${params.id}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/users/${params.id}`, {
                 method: "GET",
                 headers: {
                     "Authorization": authorizationToken,
@@ -40,7 +40,7 @@ export const AdminUpdate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${API_BASE_URL}/api/admin/users/update/${params.id}`, {
+            const response = await fetch(`${API_BASE_URL}/admin/users/update/${params.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

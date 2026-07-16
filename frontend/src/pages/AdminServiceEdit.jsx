@@ -3,14 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/service-create.css";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL, resolveMediaUrl } from "../config";
 
 
-const getImageUrl = (img) => {
-  if (!img) return "";
-  if (img.startsWith("http")) return img;
-  return `${API_BASE_URL}/${img.replace(/\\/g, "/")}`;
-};
+const getImageUrl = (img) => resolveMediaUrl(img);
 
 const AdminServiceEdit = () => {
   const navigate = useNavigate();
@@ -43,7 +39,7 @@ const AdminServiceEdit = () => {
     const loadCategory = async () => {
       try {
         setFetchLoading(true);
-        const response = await fetch(`${API_BASE_URL}/api/services/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/services/${id}`, {
           method: "GET",
           headers: { Authorization: authorizationToken },
         });
@@ -274,7 +270,7 @@ const AdminServiceEdit = () => {
       formDataToSend.append("items", JSON.stringify(itemsToSend));
 
       const response = await fetch(
-        `${API_BASE_URL}/api/admin/services/${id}`,
+        `${API_BASE_URL}/admin/services/${id}`,
         {
           method: "PUT",
           headers: { Authorization: authorizationToken },

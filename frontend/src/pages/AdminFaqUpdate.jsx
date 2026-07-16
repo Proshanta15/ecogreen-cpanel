@@ -19,7 +19,7 @@ const AdminFaqUpdate = () => {
 
   const getSingleFaqData = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/faq/edit/${params.id}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/faq/edit/${params.id}`, {
         method: "GET",
         headers: {
           "Authorization": authorizationToken,
@@ -49,7 +49,7 @@ const AdminFaqUpdate = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/faq/update/${params.id}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/faq/update/${params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

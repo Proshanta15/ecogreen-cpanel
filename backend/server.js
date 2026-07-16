@@ -21,7 +21,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// ✅ CORS configuration for production
+// CORS configuration for production
 const corsOptions = {
     origin: [
         'https://sub.ecogreentex.eu.com',
@@ -47,7 +47,7 @@ app.use("/api", aboutRoute);
 app.use("/api", homeRoute);
 app.use("/api", footerShowcaseRoute);
 
-// ✅ Test endpoint to check if API is working
+// Test endpoint to check if API is working
 app.get('/api/test', (req, res) => {
     res.json({ 
         message: '✅ API is working!', 
@@ -57,12 +57,12 @@ app.get('/api/test', (req, res) => {
     });
 });
 
-// ✅ Serve React Frontend from 'frontend/dist' folder
+// Serve React Frontend from 'frontend/dist' folder
 const distPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(distPath));
 
-// ✅ Handle all React Router routes
-app.get('*', (req, res) => {
+// Handle all React Router routes - THIS WORKS FOR YOU ✅
+app.get('/{*splat}', (req, res) => {
     // Skip API routes
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'API endpoint not found' });
