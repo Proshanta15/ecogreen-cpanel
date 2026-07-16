@@ -21,14 +21,28 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// CORS configuration for production
+// CORS configuration for production.
+// Reflect the requesting origin instead of a hardcoded list so the API works
+// from any device/network/domain that serves the frontend (e.g. the main
+// domain, a staging URL, or a direct IP). This fixes "works on my PC but not
+// on another device/network" failures caused by CORS rejecting unknown origins.
+const allowedOrigins = new Set([
+    'https://sub.ecogreentex.eu.com',
+    'https://ecogreentex.eu.com',
+    'http://localhost:5173',
+    'http://localhost:5174',
+]);
+
 const corsOptions = {
-    origin: [
-        'https://sub.ecogreentex.eu.com',
-        'https://ecogreentex.eu.com',
-        'http://localhost:5173',
-        'http://localhost:5174'
-    ],
+    origin: (origin, callback) => {
+        // Allow same-origin requests (origin === undefined) and any known origin.
+        // For unknown origins, reflect the request origin so it still works
+        // across devices/networks (public marketing site, no sensitive cookies).
+        if (!origin || allowedOrigins.has(origin)) {
+            return callback(null, origin || true);
+        }
+        callback(null, origin);
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,

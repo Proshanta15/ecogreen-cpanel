@@ -43,6 +43,12 @@ function normalizeNode(node) {
 
 export function sanitizeMediaUrls(doc) {
   if (!doc) return doc;
-  const obj = typeof doc.toObject === "function" ? doc.toObject() : doc;
+  // Deep-clone to a plain JSON-safe object first (ObjectIds become hex
+  // strings, Dates become ISO strings). This avoids mangling Mongoose
+  // subdocument _id fields, which previously caused CastError on re-save.
+  const obj =
+    typeof doc.toObject === "function"
+      ? JSON.parse(JSON.stringify(doc.toObject()))
+      : JSON.parse(JSON.stringify(doc));
   return normalizeNode(obj);
 }
