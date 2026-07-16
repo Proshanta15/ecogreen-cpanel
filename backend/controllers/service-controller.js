@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import Service from "../models/service-model.js";
-import { normalizeImagePath } from "../utils/image-path.js";
+import { normalizeImagePath, sanitizeMediaUrls } from "../utils/image-path.js";
 
 // @desc    Create a new service/category
 // @route   POST /api/admin/categories
@@ -102,7 +102,7 @@ export const getAllServices = async (req, res) => {
     res.status(200).json({
       success: true,
       count: services.length,
-      data: services,
+      data: services.map(sanitizeMediaUrls),
     });
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -130,7 +130,7 @@ export const getServiceById = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: service,
+      data: sanitizeMediaUrls(service),
     });
   } catch (error) {
     console.error("Error fetching category:", error);

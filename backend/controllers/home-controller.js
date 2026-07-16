@@ -1,6 +1,6 @@
 import fs from "fs";
 import HomePage from "../models/home-model.js";
-import { normalizeImagePath } from "../utils/image-path.js";
+import { normalizeImagePath, sanitizeMediaUrls } from "../utils/image-path.js";
 
 // @desc    Create or update home page content
 // @route   POST /api/admin/home
@@ -97,7 +97,7 @@ export const getHomePage = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: homePage,
+      data: sanitizeMediaUrls(homePage),
     });
   } catch (error) {
     console.error("Error fetching home page:", error);
@@ -128,7 +128,7 @@ export const toggleHomePageStatus = async (req, res) => {
     res.status(200).json({
       success: true,
       message: `Home page ${homePage.isActive ? "activated" : "deactivated"} successfully`,
-      data: homePage,
+      data: sanitizeMediaUrls(homePage),
     });
   } catch (error) {
     console.error("Error toggling home page status:", error);

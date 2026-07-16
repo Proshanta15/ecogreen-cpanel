@@ -12,3 +12,37 @@ export function normalizeImagePath(value) {
   v = v.replace(/\\/g, "/").replace(/^\/+/, "");
   return v;
 }
+
+// Recursively walk an object/array and normalize known image/logo/media
+// path fields so the API never returns an absolute (http://localhost) URL.
+// This fixes Mixed Content errors even for clients running an older build.
+const IMAGE_FIELDS = [
+  "image", "logo", "video", "bannerImage", "heroImage",
+  "aboutImage", "visionImage", "missionImage", "ctaImage",
+];
+
+function normalizeNode(node) {
+  if (Array.isArray(node)) {
+    return node.map(normalizeNode);
+  }
+  if (node && typeof node === "object") {
+    const out = {};
+    for (const [k, v] of Object.entries(node)) {
+      if (IMAGE_FIELDS.includes(k) && typeof v === "string") {
+        out[k] = normalizeImagePath(v);
+      } else if (v && typeof v === "object") {
+        out[k] = normalizeNode(v);
+      } else {
+        out[k] = v;
+      }
+    }
+    return out;
+  }
+  return node;
+}
+
+export function sanitizeMediaUrls(doc) {
+  if (!doc) return doc;
+  const obj = typeof doc.toObject === "function" ? doc.toObject() : doc;
+  return normalizeNode(obj);
+}

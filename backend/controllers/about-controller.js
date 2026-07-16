@@ -1,6 +1,6 @@
 import fs from "fs";
 import AboutPage from "../models/about-model.js";
-import { normalizeImagePath } from "../utils/image-path.js";
+import { normalizeImagePath, sanitizeMediaUrls } from "../utils/image-path.js";
 
 // @desc    Create or update about page content
 // @route   POST /api/admin/about
@@ -118,7 +118,7 @@ export const getAboutPage = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: aboutPage,
+      data: sanitizeMediaUrls(aboutPage),
     });
   } catch (error) {
     console.error("Error fetching about page:", error);
@@ -149,7 +149,7 @@ export const toggleAboutPageStatus = async (req, res) => {
     res.status(200).json({
       success: true,
       message: `About page ${aboutPage.isActive ? "activated" : "deactivated"} successfully`,
-      data: aboutPage,
+      data: sanitizeMediaUrls(aboutPage),
     });
   } catch (error) {
     console.error("Error toggling about page status:", error);
