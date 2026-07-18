@@ -5,7 +5,7 @@ import FooterShowcase from "../components/FooterShowcase";
 import IsLoading from "../components/IsLoading";
 import "../styles/about-us.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const getImageUrl = (img) => {
   if (!img) return "";

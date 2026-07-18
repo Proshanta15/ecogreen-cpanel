@@ -10,7 +10,7 @@ import WhoWeAre from '../components/home/WhoWeAre'
 import IsLoading from '../components/IsLoading'
 import '../styles/home-page.css'
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const HomePage = () => {
   const [data, setData] = useState(null)

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import "../styles/faq.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const [faqs, setFaqs] = useState([]);

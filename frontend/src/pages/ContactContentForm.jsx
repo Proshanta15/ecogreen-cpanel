@@ -6,7 +6,7 @@ import IsLoading from "../components/IsLoading";
 import { useAuth } from "../store/auth";
 import "../styles/contact-content.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const ContactContentForm = () => {
   const [contactContentData, setContactContentData] = useState(null);

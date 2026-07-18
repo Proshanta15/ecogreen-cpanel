@@ -5,7 +5,7 @@ import Logo from "../assets/logo.png";
 import { useAuth } from "../store/auth.jsx";
 import "../styles/login.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 export default function Login() {
   const [user, setUser] = useState({

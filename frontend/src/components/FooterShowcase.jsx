@@ -6,7 +6,7 @@ import { IoMdTime } from "react-icons/io";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const defaultData = {
   visitTitle: "Visit & Connect",

@@ -10,7 +10,7 @@ import IsLoading from "../components/IsLoading";
 import { useAuth } from "../store/auth";
 import "../styles/contact-us.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({

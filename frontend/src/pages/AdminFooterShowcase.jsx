@@ -4,7 +4,7 @@ import IsLoading from "../components/IsLoading";
 import { useAuth } from "../store/auth";
 import "../styles/admin-footerShowcase.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const emptyForm = {
   visitTitle: "",

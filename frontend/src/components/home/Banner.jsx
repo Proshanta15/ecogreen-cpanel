@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import BannerVideo from '../../../src/assets/video.mp4';
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../../config";
 
 const getMediaUrl = (src) => {
   if (!src) return "";

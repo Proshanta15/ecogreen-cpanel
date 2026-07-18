@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/admin-service.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const AdminService = () => {
   const [categories, setCategories] = useState([]);

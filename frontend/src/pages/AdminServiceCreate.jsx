@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/service-create.css";
 
-const API_BASE = "https://api.ecogreentex.eu.com";
+import { API_BASE } from "../config";
 
 const AdminServiceCreate = () => {
   const navigate = useNavigate();
