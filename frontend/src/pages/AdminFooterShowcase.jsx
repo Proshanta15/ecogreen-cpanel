@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import IsLoading from "../components/IsLoading";
 import { useAuth } from "../store/auth";
 import "../styles/admin-footerShowcase.css";
-import IsLoading from "../components/IsLoading";
-import { API_BASE_URL } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const emptyForm = {
   visitTitle: "",
@@ -30,7 +30,7 @@ const AdminFooterShowcase = () => {
   const fetchFooter = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/footer-showcase`, {
+      const response = await fetch(`${API_BASE}/api/footer-showcase`, {
         method: "GET",
         headers: { Authorization: authorizationToken },
       });
@@ -76,7 +76,7 @@ const AdminFooterShowcase = () => {
       const fd = new FormData();
       fd.append("data", JSON.stringify(form));
 
-      const response = await fetch(`${API_BASE_URL}/admin/footer-showcase`, {
+      const response = await fetch(`${API_BASE}/api/admin/footer-showcase`, {
         method: "PUT",
         headers: {
           Authorization: authorizationToken,

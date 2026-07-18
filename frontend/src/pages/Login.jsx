@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Logo from "../assets/logo.png";
 import { useAuth } from "../store/auth.jsx";
 import "../styles/login.css";
-import { API_BASE_URL } from "../config.js";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -30,7 +30,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

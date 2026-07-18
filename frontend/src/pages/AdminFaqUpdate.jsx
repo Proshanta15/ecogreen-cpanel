@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/faq-form.css';
-import { useAuth } from '../store/auth';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { API_BASE_URL } from '../config';
+import { toast } from 'react-toastify';
+import { useAuth } from '../store/auth';
+import '../styles/faq-form.css';
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const AdminFaqUpdate = () => {
 
@@ -19,7 +19,7 @@ const AdminFaqUpdate = () => {
 
   const getSingleFaqData = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/faq/edit/${params.id}`, {
+      const response = await fetch(`${API_BASE}/api/admin/faq/edit/${params.id}`, {
         method: "GET",
         headers: {
           "Authorization": authorizationToken,
@@ -49,7 +49,7 @@ const AdminFaqUpdate = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/faq/update/${params.id}`, {
+      const response = await fetch(`${API_BASE}/api/admin/faq/update/${params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

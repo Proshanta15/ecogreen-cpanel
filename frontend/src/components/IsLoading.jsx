@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/is-loading.css';
 
 const IsLoading = () => {
@@ -15,7 +14,7 @@ const IsLoading = () => {
             <span className="spinner-icon">👕</span>
           </div>
         </div>
-        
+
         {/* Loading Text */}
         <div className="loading-text">
           <h3 className="loading-title">Loading</h3>
@@ -25,12 +24,12 @@ const IsLoading = () => {
             <span className="dot"></span>
           </div>
         </div>
-        
+
         {/* Loading Progress Bar */}
         <div className="loading-progress">
           <div className="progress-bar"></div>
         </div>
-        
+
         {/* Brand Name */}
         <p className="loading-brand">Eco Green Tex Ltd.</p>
       </div>

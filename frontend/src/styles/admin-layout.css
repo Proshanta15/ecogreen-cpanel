@@ -108,7 +108,9 @@
   color: var(--sidebar-text);
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
 }
 
 .admin-nav-link:hover {
@@ -271,7 +273,10 @@
   text-decoration: none;
   color: var(--main-ink);
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
 }
 
 .overview-card:hover {
@@ -365,5 +370,10 @@
 
   .overview-grid {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 575px) {
+  .admin-main {
+    padding: 10px;
   }
 }

@@ -1,9 +1,15 @@
-import React, { useState } from "react";
-import { API_BASE_URL, resolveMediaUrl } from "../../config";
+import { useState } from "react";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
-
-const getImageUrl = (img) => resolveMediaUrl(img);
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  const normalized = img.replace(/\\/g, "/");
+  const match = normalized.match(/uploads\/.+$/);
+  const rel = match ? match[0] : normalized.replace(/^[A-Za-z]:\//, "");
+  return `${API_BASE}/${rel}`;
+};
 
 const defaultShowcase = {
   badge: "PRODUCT SHOWCASE",

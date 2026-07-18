@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import IsLoading from "../components/IsLoading";
-import "../styles/contact-content-update.css";
 import { toast } from "react-toastify";
+import IsLoading from "../components/IsLoading";
 import { useAuth } from "../store/auth";
-import { API_BASE_URL } from "../config";
+import "../styles/contact-content-update.css";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const ContactContentUpdate = () => {
   const [contactContentData, setContactContentData] = useState(null);
@@ -18,7 +18,7 @@ const ContactContentUpdate = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${API_BASE_URL}/admin/contact/content`,
+        `${API_BASE}/api/admin/contact/content`,
         {
           method: "GET",
           headers: {
@@ -60,7 +60,7 @@ const ContactContentUpdate = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/contact/content/update/${params.id}`,{
+      const response = await fetch(`${API_BASE}/api/admin/contact/content/update/${params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

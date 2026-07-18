@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import '../styles/faq-form.css';
-import { useAuth } from '../store/auth';
-import { toast } from 'react-toastify';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from '../config';
+import { toast } from 'react-toastify';
+import { useAuth } from '../store/auth';
+import '../styles/faq-form.css';
 
-
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const AdminFaqForm = () => {
 
@@ -16,7 +15,7 @@ const AdminFaqForm = () => {
   const { authorizationToken } = useAuth();
   const navigate = useNavigate();
 
- 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,26 +29,26 @@ const AdminFaqForm = () => {
     e.preventDefault();
 
     try {
-        const response = await fetch(`${API_BASE_URL}/admin/faq/create`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": authorizationToken
-            },
-            body: JSON.stringify(formData)
-        });
-        const res_data = await response.json();
-        
-        if (!response.ok) {
-            throw new Error(res_data.message || 'Failed to add FAQ');
-        }
+      const response = await fetch(`${API_BASE}/api/admin/faq/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": authorizationToken
+        },
+        body: JSON.stringify(formData)
+      });
+      const res_data = await response.json();
 
-        setFormData({ question: '', answer: '' });
-        navigate('/admin/faq');
-        toast.success('FAQ added successfully!');
+      if (!response.ok) {
+        throw new Error(res_data.message || 'Failed to add FAQ');
+      }
+
+      setFormData({ question: '', answer: '' });
+      navigate('/admin/faq');
+      toast.success('FAQ added successfully!');
     } catch (error) {
-        console.error("Error adding FAQ:", error);
-        toast.error('Error adding FAQ: ' + error.message);
+      console.error("Error adding FAQ:", error);
+      toast.error('Error adding FAQ: ' + error.message);
     }
   };
 
@@ -63,7 +62,7 @@ const AdminFaqForm = () => {
           <h2 className="faq-form-card-title">
             Add New FAQ
           </h2>
-          
+
           <form className="faq-form" onSubmit={handleSubmit}>
             <div className="faq-form-group">
               <label htmlFor="question">Question</label>
@@ -93,7 +92,7 @@ const AdminFaqForm = () => {
 
             <div className="faq-form-actions">
               <button type="submit" className="faq-form-btn-submit">
-               Add FAQ
+                Add FAQ
               </button>
             </div>
           </form>

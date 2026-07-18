@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/admin-contact.css";
-import { API_BASE_URL } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 export const AdminUpdate = () => {
 
     const [data, setData] = useState({
@@ -20,7 +20,7 @@ export const AdminUpdate = () => {
 
     const getSingleUserData = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/users/${params.id}`, {
+            const response = await fetch(`${API_BASE}/api/admin/users/${params.id}`, {
                 method: "GET",
                 headers: {
                     "Authorization": authorizationToken,
@@ -40,7 +40,7 @@ export const AdminUpdate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/users/update/${params.id}`, {
+            const response = await fetch(`${API_BASE}/api/admin/users/update/${params.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

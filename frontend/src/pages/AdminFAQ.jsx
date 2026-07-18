@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../store/auth";
 import IsLoading from "../components/IsLoading";
+import { useAuth } from "../store/auth";
 import "../styles/admin-faq.css";
-import { API_BASE_URL } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const AdminFAQ = () => {
   const [faqData, setFaqData] = useState([]);
@@ -16,7 +16,7 @@ const AdminFAQ = () => {
   const getAllFaqData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/admin/faq`, {
+      const response = await fetch(`${API_BASE}/api/admin/faq`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -50,7 +50,7 @@ const AdminFAQ = () => {
   const deleteFaq = async (id) => {
 
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/faq/delete/${id}`, {
+      const response = await fetch(`${API_BASE}/api/admin/faq/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: authorizationToken,
@@ -111,11 +111,11 @@ const AdminFAQ = () => {
         <div className="admin-faq-list">
           {faqData && faqData.length > 0 ? (
             faqData.map((faq, index) => (
-              <div 
+              <div
                 className={`admin-faq-item ${expandedId === faq._id ? "expanded" : ""}`}
                 key={faq._id || index}
               >
-                <div 
+                <div
                   className="admin-faq-item-header"
                   onClick={() => toggleExpand(faq._id)}
                 >
@@ -126,14 +126,14 @@ const AdminFAQ = () => {
                     <h3 className="admin-faq-item-question">{faq.question}</h3>
                   </div>
                   <div className="admin-faq-item-actions">
-                    <Link 
-                      to={`/admin/faq/edit/${faq._id}`} 
+                    <Link
+                      to={`/admin/faq/edit/${faq._id}`}
                       className="admin-faq-item-edit"
                       onClick={(e) => e.stopPropagation()}
                     >
                       ✏️
                     </Link>
-                    <button 
+                    <button
                       className="admin-faq-item-delete"
                       onClick={(e) => {
                         e.stopPropagation();

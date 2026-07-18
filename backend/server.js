@@ -4,97 +4,65 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { errorMiddleware } from './middlewares/error-middleware.js';
+import aboutRoute from './router/about-router.js';
 import adminRoute from './router/admin-router.js';
 import authRoute from './router/auth-router.js';
 import contactRoute from './router/contact-router.js';
-import serviceRoute from './router/service-router.js';
-import aboutRoute from './router/about-router.js';
-import homeRoute from './router/home-router.js';
 import footerShowcaseRoute from './router/footerShowcase-router.js';
+import homeRoute from './router/home-router.js';
+import serviceRoute from './router/service-router.js';
 import connectDB from './utils/db.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 dotenv.config();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const app = express();
-app.use(express.json());
 
-// CORS configuration for production.
-// Reflect the requesting origin instead of a hardcoded list so the API works
-// from any device/network/domain that serves the frontend (e.g. the main
-// domain, a staging URL, or a direct IP). This fixes "works on my PC but not
-// on another device/network" failures caused by CORS rejecting unknown origins.
-const allowedOrigins = new Set([
-    'https://sub.ecogreentex.eu.com',
-    'https://ecogreentex.eu.com',
-    'http://localhost:5173',
-    'http://localhost:5174',
-]);
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        // Allow same-origin requests (origin === undefined) and any known origin.
-        // For unknown origins, reflect the request origin so it still works
-        // across devices/networks (public marketing site, no sensitive cookies).
-        if (!origin || allowedOrigins.has(origin)) {
-            return callback(null, origin || true);
-        }
-        callback(null, origin);
-    },
+let corsOptions = {
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    // origin: 'http://localhost:5174', // Replace with your frontend URL
+    origin: 'https://sub.ecogreentex.eu.com', // Replace with your frontend URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,
 };
 app.use(cors(corsOptions));
 
-// Serve uploaded files
+app.use(express.json());
+
+// Serve uploaded files (e.g. category/item images)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// API Routes
+// Auth route for user registration, login, and user info
 app.use("/api/auth", authRoute);
+
+// Contact form route
 app.use("/api/form", contactRoute);
+
+// Admin route for user management
 app.use("/api/admin", adminRoute);
+
+// Service / Category routes
 app.use("/api", serviceRoute);
+
+// About page content routes
 app.use("/api", aboutRoute);
+
+// Home page content routes
 app.use("/api", homeRoute);
+
+// Footer showcase content routes
 app.use("/api", footerShowcaseRoute);
 
-// Test endpoint to check if API is working
-app.get('/api/test', (req, res) => {
-    res.json({ 
-        message: '✅ API is working!', 
-        timestamp: new Date().toISOString(),
-        status: 'OK',
-        environment: process.env.NODE_ENV
-    });
-});
-
-// Serve React Frontend from 'frontend/dist' folder
-const distPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(distPath));
-
-// Handle all React Router routes - THIS WORKS FOR YOU ✅
-app.get('/{*splat}', (req, res) => {
-    // Skip API routes
-    if (req.path.startsWith('/api')) {
-        return res.status(404).json({ error: 'API endpoint not found' });
-    }
-    res.sendFile(path.join(distPath, 'index.html'));
-});
 
 app.use(errorMiddleware);
+
 
 const PORT = process.env.PORT || 3000;
 
 connectDB().then(() => {
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`✅ Server running on port ${PORT}`);
-        console.log(`✅ Serving React app from: ${distPath}`);
-        console.log(`✅ Environment: ${process.env.NODE_ENV || 'development'}`);
-    });
-}).catch(err => {
-    console.error('❌ Database connection failed:', err);
-    process.exit(1);
-});
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    })
+})

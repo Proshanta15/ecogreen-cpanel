@@ -1,16 +1,12 @@
-import { FaMapMarkerAlt, FaMapPin } from "react-icons/fa";
-import { FaArrowRight, FaInstagram, FaLinkedin, FaSquareFacebook, FaSquareXTwitter } from "react-icons/fa6";
-import { FiPhone } from "react-icons/fi";
-import { IoMdTime } from "react-icons/io";
-import { IoMailUnreadOutline } from "react-icons/io5";
-import { Link, NavLink } from "react-router-dom";
+import { FaInstagram, FaLinkedin, FaSquareFacebook, FaSquareXTwitter } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 import "../styles/footer.css";
 
 
 const Footer = () => {
   return (
     <div className="container">
-      
+
 
       {/* Quick Links & Social */}
       <div className="quick-links-modern">

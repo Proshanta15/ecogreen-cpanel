@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/admin-service.css";
-import { API_BASE_URL, resolveMediaUrl } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const AdminService = () => {
   const [categories, setCategories] = useState([]);
@@ -12,12 +12,16 @@ const AdminService = () => {
   const [error, setError] = useState(null);
   const { authorizationToken } = useAuth();
 
-  const getImageUrl = (img) => resolveMediaUrl(img);
+  const getImageUrl = (img) => {
+    if (!img) return "https://via.placeholder.com/400x300?text=No+Image";
+    if (img.startsWith("http")) return img;
+    return `${API_BASE}/${img.replace(/\\/g, "/")}`;
+  };
 
   const getAllCategories = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/services`, {
+      const response = await fetch(`${API_BASE}/api/services`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -46,7 +50,7 @@ const AdminService = () => {
   const toggleStatus = async (category) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/admin/services/${category.id}/toggle`,
+        `${API_BASE}/api/admin/services/${category.id}/toggle`,
         {
           method: "PUT",
           headers: {
@@ -81,7 +85,7 @@ const AdminService = () => {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/admin/services/${category.id}`,
+        `${API_BASE}/api/admin/services/${category.id}`,
         {
           method: "DELETE",
           headers: {
@@ -170,9 +174,8 @@ const AdminService = () => {
                           {category.title}
                         </h2>
                         <span
-                          className={`admin-service-status ${
-                            category.isActive ? "active" : "inactive"
-                          }`}
+                          className={`admin-service-status ${category.isActive ? "active" : "inactive"
+                            }`}
                         >
                           {category.isActive ? "Active" : "Inactive"}
                         </span>

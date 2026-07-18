@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import Logo from "../assets/logo.png";
 import { useAuth } from "../store/auth.jsx";
 import "../styles/register.css";
-import { API_BASE_URL } from "../config.js";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 export default function RegisterForm() {
   const [user, setUser] = useState({
@@ -34,7 +34,7 @@ export default function RegisterForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

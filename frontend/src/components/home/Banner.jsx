@@ -1,10 +1,16 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import BannerVideo from '../../../src/assets/video.mp4'
-import { resolveMediaUrl } from '../../config';
+import { NavLink } from 'react-router-dom';
+import BannerVideo from '../../../src/assets/video.mp4';
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
-const getMediaUrl = (src) => resolveMediaUrl(src);
+const getMediaUrl = (src) => {
+  if (!src) return "";
+  if (src.startsWith("http")) return src;
+  const normalized = src.replace(/\\/g, "/");
+  const match = normalized.match(/uploads\/.+$/);
+  const rel = match ? match[0] : normalized.replace(/^[A-Za-z]:\//, "");
+  return `${API_BASE}/${rel}`;
+};
 
 const defaultBanner = {
   title: "Your Global Partner",

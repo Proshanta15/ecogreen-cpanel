@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import '../styles/admin-user.css';
-import { API_BASE_URL } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 export const AdminUser = () => {
     const [users, setUsers] = useState([]);
@@ -13,7 +13,7 @@ export const AdminUser = () => {
 
     const getAllUsersData = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/users`, {
+            const response = await fetch(`${API_BASE}/api/admin/users`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -48,7 +48,7 @@ export const AdminUser = () => {
 
     const deleteUser = async (id) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/users/delete/${id}`, {
+            const response = await fetch(`${API_BASE}/api/admin/users/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: authorizationToken,

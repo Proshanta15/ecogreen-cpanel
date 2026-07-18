@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/auth";
 import "../styles/service-create.css";
-import { API_BASE_URL } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const AdminServiceCreate = () => {
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ const AdminServiceCreate = () => {
         }));
       };
       reader.readAsDataURL(file);
-      
+
       setFormData((prev) => ({
         ...prev,
         items: {
@@ -218,7 +218,7 @@ const AdminServiceCreate = () => {
 
       formDataToSend.append("items", JSON.stringify(itemsToSend));
 
-      const response = await fetch(`${API_BASE_URL}/admin/services`, {
+      const response = await fetch(`${API_BASE}/api/admin/services`, {
         method: "POST",
         headers: {
           Authorization: authorizationToken,
@@ -268,7 +268,7 @@ const AdminServiceCreate = () => {
           {/* Basic Information */}
           <div className="admin-category-section">
             <h2 className="admin-category-section-title">Basic Information</h2>
-            
+
             {/* Category ID */}
             <div className="admin-category-form-group">
               <label htmlFor="id">
@@ -448,9 +448,9 @@ const AdminServiceCreate = () => {
                           </div>
                           {previews[index] && (
                             <div className="item-image-preview">
-                              <img 
-                                src={previews[index]} 
-                                alt={item.name || "Item preview"} 
+                              <img
+                                src={previews[index]}
+                                alt={item.name || "Item preview"}
                               />
                               <button
                                 type="button"

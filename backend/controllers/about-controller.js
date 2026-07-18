@@ -1,6 +1,5 @@
 import fs from "fs";
 import AboutPage from "../models/about-model.js";
-import { normalizeImagePath, sanitizeMediaUrls } from "../utils/image-path.js";
 
 // @desc    Create or update about page content
 // @route   POST /api/admin/about
@@ -20,25 +19,25 @@ export const createOrUpdateAboutPage = async (req, res) => {
     });
 
     // Overlay uploaded image paths onto the structured data
-    if (fileMap.heroImage) aboutData.hero = { ...aboutData.hero, image: normalizeImagePath(fileMap.heroImage) };
+    if (fileMap.heroImage) aboutData.hero = { ...aboutData.hero, image: fileMap.heroImage };
     if (fileMap.aboutImage)
-      aboutData.aboutContent = { ...aboutData.aboutContent, image: normalizeImagePath(fileMap.aboutImage) };
+      aboutData.aboutContent = { ...aboutData.aboutContent, image: fileMap.aboutImage };
     if (fileMap.visionImage)
       aboutData.visionMission = {
         ...aboutData.visionMission,
-        vision: { ...aboutData.visionMission?.vision, image: normalizeImagePath(fileMap.visionImage) },
+        vision: { ...aboutData.visionMission?.vision, image: fileMap.visionImage },
       };
     if (fileMap.missionImage)
       aboutData.visionMission = {
         ...aboutData.visionMission,
-        mission: { ...aboutData.visionMission?.mission, image: normalizeImagePath(fileMap.missionImage) },
+        mission: { ...aboutData.visionMission?.mission, image: fileMap.missionImage },
       };
-    if (fileMap.ctaImage) aboutData.cta = { ...aboutData.cta, image: normalizeImagePath(fileMap.ctaImage) };
+    if (fileMap.ctaImage) aboutData.cta = { ...aboutData.cta, image: fileMap.ctaImage };
 
     if (Array.isArray(aboutData.values)) {
       aboutData.values = aboutData.values.map((value, index) => {
         const key = `valueImage_${index}`;
-        return fileMap[key] ? { ...value, image: normalizeImagePath(fileMap[key]) } : value;
+        return fileMap[key] ? { ...value, image: fileMap[key] } : value;
       });
     }
 
@@ -118,7 +117,7 @@ export const getAboutPage = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      data: sanitizeMediaUrls(aboutPage),
+      data: aboutPage,
     });
   } catch (error) {
     console.error("Error fetching about page:", error);
@@ -149,7 +148,7 @@ export const toggleAboutPageStatus = async (req, res) => {
     res.status(200).json({
       success: true,
       message: `About page ${aboutPage.isActive ? "activated" : "deactivated"} successfully`,
-      data: sanitizeMediaUrls(aboutPage),
+      data: aboutPage,
     });
   } catch (error) {
     console.error("Error toggling about page status:", error);

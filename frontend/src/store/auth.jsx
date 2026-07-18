@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { API_BASE_URL } from "../config";
 
 export const AuthContext = createContext();
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/user`, {
+      const response = await fetch(`${API_BASE}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

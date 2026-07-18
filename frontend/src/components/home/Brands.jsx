@@ -1,7 +1,15 @@
-import React from 'react'
-import { API_BASE_URL, resolveMediaUrl } from '../../config';
+import React from 'react';
 
-const getImageUrl = (img) => resolveMediaUrl(img);
+const API_BASE = "https://api.ecogreentex.eu.com";
+
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  const normalized = img.replace(/\\/g, "/");
+  const match = normalized.match(/uploads\/.+$/);
+  const rel = match ? match[0] : normalized.replace(/^[A-Za-z]:\//, "");
+  return `${API_BASE}/${rel}`;
+};
 
 const defaultBrands = {
   badge: "OUR PARTNERS",

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import '../styles/home-page.css'
+import { useEffect, useState } from 'react'
+import Faq from '../components/Faq'
+import FooterShowcase from '../components/FooterShowcase'
 import Banner from '../components/home/Banner'
-import WhoWeAre from '../components/home/WhoWeAre'
+import Brands from '../components/home/Brands'
 import Expertise from '../components/home/Expertise'
 import Partner from '../components/home/Partner'
 import Showcase from '../components/home/Showcase'
-import Brands from '../components/home/Brands'
-import Faq from '../components/Faq'
-import FooterShowcase from '../components/FooterShowcase'
+import WhoWeAre from '../components/home/WhoWeAre'
 import IsLoading from '../components/IsLoading'
-import { API_BASE_URL } from '../config'
+import '../styles/home-page.css'
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const HomePage = () => {
   const [data, setData] = useState(null)
@@ -19,7 +19,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/home`, {
+        const response = await fetch(`${API_BASE}/api/home`, {
           method: "GET",
         })
         const result = await response.json()

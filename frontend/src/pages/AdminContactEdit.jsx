@@ -3,9 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from '../store/auth';
 import "../styles/admin-contact.css";
-import { API_BASE_URL } from '../config';
 
-
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 export const AdminContactEdit = () => {
     const [data, setData] = React.useState({
@@ -22,7 +21,7 @@ export const AdminContactEdit = () => {
 
     const getSingleContactData = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/contacts/${params.id}`, {
+            const response = await fetch(`${API_BASE}/api/admin/contacts/${params.id}`, {
                 method: "GET",
                 headers: {
                     "Authorization": authorizationToken,
@@ -39,7 +38,7 @@ export const AdminContactEdit = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/contacts/update/${params.id}`, {
+            const response = await fetch(`${API_BASE}/api/admin/contacts/update/${params.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/service.css";
-import { API_BASE_URL, resolveMediaUrl } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const ServicePage = () => {
   const [categories, setCategories] = useState([]);
@@ -16,7 +16,7 @@ const ServicePage = () => {
     const loadServices = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_BASE_URL}/services?isActive=true`);
+        const response = await fetch(`${API_BASE}/api/services?isActive=true`);
         const result = await response.json();
         if (response.ok && result.success) {
           // Guard: only show active categories on the public page
@@ -43,7 +43,11 @@ const ServicePage = () => {
 
   // Resolve image paths: relative uploads get the backend base URL,
   // external URLs are used as-is, and missing images fall back to a placeholder.
-  const getImageUrl = (img) => resolveMediaUrl(img);
+  const getImageUrl = (img) => {
+    if (!img) return "https://via.placeholder.com/400x300?text=No+Image";
+    if (img.startsWith("http")) return img;
+    return `${API_BASE}/${img.replace(/\\/g, "/")}`;
+  };
 
   const handleGenderFilter = (categoryId, gender) => {
     setActiveGender((prev) => ({

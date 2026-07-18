@@ -5,9 +5,8 @@ import { FiPhone } from "react-icons/fi";
 import { IoMdTime } from "react-icons/io";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { API_BASE_URL } from "../config";
 
-
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const defaultData = {
   visitTitle: "Visit & Connect",
@@ -29,7 +28,7 @@ const FooterShowcase = () => {
   useEffect(() => {
     const fetchFooter = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/footer-showcase`, {
+        const response = await fetch(`${API_BASE}/api/footer-showcase`, {
           method: "GET",
         });
         const result = await response.json();

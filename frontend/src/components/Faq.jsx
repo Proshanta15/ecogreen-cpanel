@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import "../styles/faq.css";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../store/auth";
-import { API_BASE_URL } from "../config";
+import "../styles/faq.css";
 
-
+const API_BASE = "https://api.ecogreentex.eu.com";
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const [faqs, setFaqs] = useState([]);
@@ -13,13 +11,14 @@ const Faq = () => {
 
   const getAllFaqData = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/admin/faq`, {
+      const response = await fetch(`${API_BASE}/api/admin/faq`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
         },
       });
       const data = await response.json();
+      console.log("FAQs", data);
       setFaqs(Array.isArray(data) ? data : data.data || []);
     } catch (error) {
       console.log(error);
@@ -61,7 +60,7 @@ const Faq = () => {
               <h3>Quick Support</h3>
               <p>Can't find your answer? Our team is here to help 24/7</p>
               <NavLink to="/contact" className="contact-support-btn">
-              Contact Support
+                Contact Support
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
                     d="M5 12H19M19 12L12 5M19 12L12 19"

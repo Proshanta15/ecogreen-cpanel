@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import IsLoading from "../components/IsLoading";
 import { useAuth } from "../store/auth";
 import "../styles/admin-about.css";
-import IsLoading from "../components/IsLoading";
-import { API_BASE_URL, resolveMediaUrl } from "../config";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
-
-const getImageUrl = (img) => resolveMediaUrl(img);
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  return `${API_BASE}/${img.replace(/\\/g, "/")}`;
+};
 
 const emptyForm = {
   hero: {
@@ -62,7 +65,7 @@ const AdminAbout = () => {
   const fetchAbout = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/about`, {
+      const response = await fetch(`${API_BASE}/api/about`, {
         method: "GET",
         headers: { Authorization: authorizationToken },
       });
@@ -208,7 +211,7 @@ const AdminAbout = () => {
         fd.append(fieldName, file);
       });
 
-      const response = await fetch(`${API_BASE_URL}/admin/about`, {
+      const response = await fetch(`${API_BASE}/api/admin/about`, {
         method: "PUT",
         headers: {
           Authorization: authorizationToken,

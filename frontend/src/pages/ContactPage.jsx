@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../store/auth";
 import {
   FaInstagram,
   FaLinkedin,
   FaSquareFacebook,
   FaSquareXTwitter,
 } from "react-icons/fa6";
-import "../styles/contact-us.css";
-import IsLoading from "../components/IsLoading";
 import { toast } from "react-toastify";
-import { API_BASE_URL } from "../config";
+import IsLoading from "../components/IsLoading";
+import { useAuth } from "../store/auth";
+import "../styles/contact-us.css";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/form/contact`, {
+      const response = await fetch(`${API_BASE}/api/form/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const ContactPage = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${API_BASE_URL}/admin/contact/content`,
+        `${API_BASE}/api/admin/contact/content`,
         {
           method: "GET",
           headers: {

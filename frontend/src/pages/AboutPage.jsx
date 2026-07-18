@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
-import "../styles/about-us.css";
-import Faq from "../components/Faq";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Faq from "../components/Faq";
 import FooterShowcase from "../components/FooterShowcase";
 import IsLoading from "../components/IsLoading";
-import { API_BASE_URL, resolveMediaUrl } from "../config";
+import "../styles/about-us.css";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
-
-const getImageUrl = (img) => resolveMediaUrl(img);
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  const normalized = img.replace(/\\/g, "/");
+  const match = normalized.match(/uploads\/.+$/);
+  const rel = match ? match[0] : normalized.replace(/^[A-Za-z]:\//, "");
+  return `${API_BASE}/${rel}`;
+};
 
 const defaultData = {
   hero: {
@@ -51,7 +57,7 @@ const AboutPage = () => {
   useEffect(() => {
     const fetchAbout = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/about`, {
+        const response = await fetch(`${API_BASE}/api/about`, {
           method: "GET",
         });
         const result = await response.json();

@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { useAuth } from "../store/auth";
-import IsLoading from "../components/IsLoading";
-import "../styles/contact-content.css";
-import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { FaLinkedin, FaSquareFacebook, FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { FaXTwitter, FaSquareFacebook, FaSquareInstagram, FaLinkedin } from "react-icons/fa6";
-import { API_BASE_URL } from "../config";
+import { toast } from "react-toastify";
+import IsLoading from "../components/IsLoading";
+import { useAuth } from "../store/auth";
+import "../styles/contact-content.css";
 
+const API_BASE = "https://api.ecogreentex.eu.com";
 
 const ContactContentForm = () => {
   const [contactContentData, setContactContentData] = useState(null);
@@ -17,7 +17,7 @@ const ContactContentForm = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${API_BASE_URL}/admin/contact/content`,
+        `${API_BASE}/api/admin/contact/content`,
         {
           method: "GET",
           headers: {
@@ -225,7 +225,7 @@ const ContactContentForm = () => {
           {/* Footer with Update Button */}
           <div className="contact-content-footer">
             <div className="contact-content-footer-left">
-              
+
             </div>
             <Link to={`/admin/contact/content/update/${contactContentData?._id}`} className="contact-content-update-btn">
               ✏️ Update Content
